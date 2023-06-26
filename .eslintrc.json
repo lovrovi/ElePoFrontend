@@ -9,11 +9,12 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "@tanstack/eslint-plugin-query"],
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "react/prop-types": [0]
+    "react/prop-types": [0],
+    "no-unused-vars": "warn"
   }
 }

@@ -1,18 +1,11 @@
+import { Header } from 'components/Header/Header';
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 function Layout() {
   return (
     <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-      </ul>
-
+      <Header />
       <Outlet />
     </div>
   );
