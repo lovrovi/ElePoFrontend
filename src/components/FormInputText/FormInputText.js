@@ -15,7 +15,6 @@ export const FormInputText = ({ name, control, label, ...props }) => {
           onChange={onChange}
           value={value}
           label={label}
-          variant="outlined"
           {...props}
         />
       )}
