@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
-import Router from 'router/Router';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'lib/router/Router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: { refetchOnWindowFocus: false, retry: false, staleTime: 1 },
+      mutations: { retry: false },
+    },
+  });
   const darkTheme = createTheme({
     palette: {
       mode: 'dark',
@@ -15,12 +19,10 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider theme={darkTheme}>
-          <CssBaseline />
-          <Router />
-        </ThemeProvider>
-      </BrowserRouter>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Router />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

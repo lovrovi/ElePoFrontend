@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, CssBaseline, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import classes from './Header.module.css';
+import { routes } from 'lib/router/Router';
 
 function Header() {
   return (
@@ -12,13 +13,13 @@ function Header() {
           Navbar
         </Typography>
         <div className={classes.navlinks}>
-          <Link to="/" className={classes.link}>
+          <Link to={routes.PROCESSORS} className={classes.link}>
             Home
           </Link>
-          <Link to="/login" className={classes.link}>
+          <Link to={routes.LOGIN} className={classes.link}>
             Login
           </Link>
-          <Link to="/register" className={classes.link}>
+          <Link to={routes.REGISTER} className={classes.link}>
             Register
           </Link>
         </div>

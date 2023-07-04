@@ -3,13 +3,14 @@ import { Button, Typography, Box, CircularProgress } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { useForm } from 'react-hook-form';
 import { FormInputText } from 'components/FormInputText/FormInputText';
-import { useRegister } from 'queries/useRegister';
+import { useRegister } from 'lib/api/login/useRegister';
 
 export default function Register() {
   const { mutate: register, isError } = useRegister();
 
   const defaultValues = {
     username: '',
+    email: '',
     password: '',
   };
 
@@ -39,6 +40,12 @@ export default function Register() {
       <FormInputText
         name="username"
         label="Username: "
+        variant="standard"
+        control={control}
+      />
+      <FormInputText
+        name="email"
+        label="Email: "
         variant="standard"
         control={control}
       />

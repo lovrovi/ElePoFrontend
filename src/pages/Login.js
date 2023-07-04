@@ -3,13 +3,15 @@ import { Button, Typography, Box, CircularProgress } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { useForm } from 'react-hook-form';
 import { FormInputText } from 'components/FormInputText/FormInputText';
-import { useLogin } from 'queries/useLogin';
+import { useLogin } from 'lib/api/login/useLogin';
 
 export default function Login() {
-  const { mutate: login, isError } = useLogin();
+  const { mutate: login, isError, data } = useLogin();
+
+  console.log(data?.headers.get('access-token'));
 
   const defaultValues = {
-    username: '',
+    email: '',
     password: '',
   };
 
@@ -37,8 +39,8 @@ export default function Login() {
         LOGIN
       </Typography>
       <FormInputText
-        name="username"
-        label="Username: "
+        name="email"
+        label="Email: "
         variant="standard"
         control={control}
       />

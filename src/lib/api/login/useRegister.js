@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
+import axios from 'lib/api/axiosConfig';
 
 const register = (data) => {
-  return console.log(data);
+  return axios.post('/register', data);
 };
 
 function useRegister() {
