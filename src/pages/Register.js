@@ -4,9 +4,15 @@ import Paper from '@mui/material/Paper';
 import { useForm } from 'react-hook-form';
 import { FormInputText } from 'components/FormInputText/FormInputText';
 import { useRegister } from 'lib/api/login/useRegister';
+import { generatePath, useNavigate } from 'react-router';
+import { routes } from 'lib/router/Router';
 
 export default function Register() {
-  const { mutate: register, isError } = useRegister();
+  const navigate = useNavigate();
+
+  const { mutate: register, isError } = useRegister({
+    onSuccess: () => navigate(generatePath(routes.LOGIN)),
+  });
 
   const defaultValues = {
     username: '',

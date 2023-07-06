@@ -20,7 +20,6 @@ const Processors = () => {
   const navigate = useNavigate();
 
   const { data: rows } = useGetAllProcessors();
-  console.log(rows);
 
   const columns = [
     { id: 'image', label: '', align: 'center' },

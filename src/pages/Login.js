@@ -4,11 +4,11 @@ import Paper from '@mui/material/Paper';
 import { useForm } from 'react-hook-form';
 import { FormInputText } from 'components/FormInputText/FormInputText';
 import { useLogin } from 'lib/api/login/useLogin';
+import { useNavigate } from 'react-router';
 
 export default function Login() {
-  const { mutate: login, isError, data } = useLogin();
-
-  console.log(data?.headers.get('access-token'));
+  const navigate = useNavigate();
+  const { mutate: login, isError } = useLogin(navigate);
 
   const defaultValues = {
     email: '',

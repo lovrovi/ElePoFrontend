@@ -5,8 +5,12 @@ const register = (data) => {
   return axios.post('/register', data);
 };
 
-function useRegister() {
-  return useMutation({ mutationFn: register, mutationKey: 'register' });
+function useRegister(options) {
+  return useMutation({
+    mutationFn: register,
+    mutationKey: 'register',
+    ...options,
+  });
 }
 
 export { useRegister };

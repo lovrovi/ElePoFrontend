@@ -1,18 +1,18 @@
 .navlinks {
   margin-left: 10px;
-  display: 'flex';
+  display: flex;
 }
 .logo {
-  flex-grow: '1';
-  cursor: 'pointer';
+  flex-grow: 1;
+  cursor: pointer;
 }
 .link {
-  text-decoration: 'none';
-  color: 'white';
+  text-decoration: none;
+  color: white;
   font-size: 20px;
   margin-left: 20px;
   &:hover {
-    color: 'yellow';
-    border-bottom: '1px solid white';
+    color: yellow;
+    border-bottom: 1px solid white;
   }
 }
