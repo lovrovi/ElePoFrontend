@@ -8,8 +8,9 @@ const getProcessor = (id) => {
 function useGetProcessor(id) {
   return useQuery({
     queryFn: () => getProcessor(id),
-    queryKey: ['getProcessor'],
+    queryKey: ['getProcessor', id],
     select: (data) => data?.data,
+    enabled: !!id,
   });
 }
 

@@ -12,6 +12,7 @@ function useGetUserInfo() {
     queryKey: ['getUserInfo'],
     select: (data) => data?.data,
     enabled: isUserLoggedIn(),
+    // onError: () => window.location.reload(),
   });
 }
 

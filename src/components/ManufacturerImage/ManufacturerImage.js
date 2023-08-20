@@ -6,6 +6,8 @@ const ManufacturerImage = ({ manufacturerName }) => {
     switch (manufacturerName) {
       case 'AMD':
         return '/amd-logo.png';
+      case 'Intel':
+        return '/intel-logo.png';
     }
   };
 

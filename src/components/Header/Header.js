@@ -12,6 +12,8 @@ function Header() {
   const getTitle = () => {
     if (location.pathname === '/processors') {
       return 'Processors';
+    } else if (location.pathname.startsWith('/processors/compare')) {
+      return 'Processor comparison';
     } else if (location.pathname.startsWith('/processors/')) {
       return 'Processor details';
     } else if (location.pathname === '/login') {

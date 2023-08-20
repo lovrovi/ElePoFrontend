@@ -1,14 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'lib/api/axiosConfig';
 
 const patchProcessor = (id, data) => {
-  return axios.patch(`/processor/get/${id}`, data);
+  return axios.patch(`/processor/update/${id}`, data);
 };
 
-function usePatchProcessor() {
-  return useQuery({
-    queryFn: (id, data) => patchProcessor(id, data),
-    queryKey: ['patchProcessor'],
+function usePatchProcessor(id, options) {
+  return useMutation({
+    mutationFn: (data) => patchProcessor(id, data),
+    mutationKey: ['patchProcessor', id],
+    ...options,
   });
 }
 

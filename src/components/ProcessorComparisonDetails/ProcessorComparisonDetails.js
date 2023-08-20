@@ -1,9 +1,9 @@
+import { Grid } from '@mui/material';
+import { FormInputText } from 'components/FormInputText/FormInputText';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormInputText } from 'components/FormInputText/FormInputText';
-import { Grid } from '@mui/material';
 
-const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
+const ProcessorComparisonDetails = ({ processor, isFetched }) => {
   const { control, reset } = useForm({
     defaultValues: {
       id: processor?.id || '',
@@ -29,11 +29,18 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
   }, [isFetched, reset, processor]);
 
   return (
-    <Grid container spacing={4} width="50%" justifyContent="center">
-      <Grid item xs={6}>
+    <Grid
+      container
+      spacing={4}
+      width="45%"
+      justifyContent="center"
+      alignItems="center"
+      margin="unset"
+    >
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText control={control} name="name" label="Name:" disabled />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="manufacturerName"
@@ -41,7 +48,7 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
           disabled
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="socket"
@@ -49,7 +56,7 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
           disabled
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="releaseDate"
@@ -57,7 +64,7 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
           disabled
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="numberOfCores"
@@ -65,7 +72,7 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
           disabled
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="numberOfThreads"
@@ -73,7 +80,7 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
           disabled
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="baseClockSpeed"
@@ -81,7 +88,7 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
           disabled
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="boostClockSpeed"
@@ -89,7 +96,7 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
           disabled
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="retailPrice"
@@ -97,7 +104,7 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
           disabled
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} justifyContent="center" display="flex">
         <FormInputText
           control={control}
           name="additionalInfo"
@@ -112,4 +119,4 @@ const ProcessorDetailsDisplay = ({ processor, isFetched }) => {
   );
 };
 
-export default ProcessorDetailsDisplay;
+export default ProcessorComparisonDetails;

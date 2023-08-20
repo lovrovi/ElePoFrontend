@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  Box,
+  Button,
   Paper,
   Table,
   TableBody,
@@ -13,12 +15,14 @@ import { generatePath, useNavigate } from 'react-router-dom';
 import { routes } from 'lib/router/Router';
 import { useGetAllProcessors } from 'lib/api/processors/useGetAllProcessors';
 import ManufacturerImage from 'components/ManufacturerImage/ManufacturerImage';
+import { useGetUserInfo } from 'lib/api/login/useGetUserInfo';
 
 const Processors = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const navigate = useNavigate();
 
+  const { data: userInfo } = useGetUserInfo();
   const { data: rows } = useGetAllProcessors();
 
   const columns = [
@@ -75,9 +79,13 @@ const Processors = () => {
     navigate(generatePath(routes.PROCESSORS_DETAILS, { id }));
   };
 
+  const onCreateClick = () => {
+    navigate(generatePath(routes.PROCESSORS_CREATE));
+  };
+
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -140,6 +148,11 @@ const Processors = () => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      {userInfo?.role === 'ROLE_ADMIN' && (
+        <Box display="flex" justifyContent="end" pr={4}>
+          <Button onClick={onCreateClick}>Create new processor</Button>
+        </Box>
+      )}
     </Paper>
   );
 };

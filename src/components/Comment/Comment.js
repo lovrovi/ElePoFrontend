@@ -15,7 +15,8 @@ const Comment = ({ comment, userInfo, onDeleteComment }) => {
     setOpen(false);
   };
 
-  const isDeletable = comment?.user?.id === userInfo?.id;
+  const isDeletable =
+    comment?.user?.id === userInfo?.id || userInfo?.role === 'ROLE_ADMIN';
 
   return (
     <>
@@ -35,7 +36,7 @@ const Comment = ({ comment, userInfo, onDeleteComment }) => {
           </Typography>
           <Typography sx={{ textAlign: 'left' }}>{comment?.text}</Typography>
           <Typography sx={{ textAlign: 'left', color: 'gray' }}>
-            posted {comment?.createdAt}
+            posted {new Date(comment?.createdAt).toDateString()}
           </Typography>
         </Grid>
         {isDeletable && (

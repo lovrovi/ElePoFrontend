@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
-import { Box, CircularProgress, Divider, Stack } from '@mui/material';
+import { generatePath, useNavigate, useParams } from 'react-router';
+import { Box, Button, CircularProgress, Divider, Stack } from '@mui/material';
 import { useQueryClient } from '@tanstack/react-query';
 import { useGetProcessor } from 'lib/api/processors/useGetProcessor';
 import { useGetComments } from 'lib/api/comments/useGetComments';
@@ -10,10 +10,12 @@ import { useGetUserInfo } from 'lib/api/login/useGetUserInfo';
 import { useDeleteComment } from 'lib/api/comments/useDeleteComment';
 import AddComment from 'components/AddComment/AddComment';
 import ProcessorDetailsDisplay from 'components/ProcessorDetailsDisplay/ProcessorDetailsDisplay';
+import { routes } from 'lib/router/Router';
 
 const ProcessorDetails = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { data: processor, isLoading, isFetched } = useGetProcessor(id);
   const { data: comments, isLoading: isCommentLoading } = useGetComments(id);
@@ -25,6 +27,17 @@ const ProcessorDetails = () => {
     queryClient.refetchQueries({ queryKey: ['getComments', id] });
 
   const onDeleteComment = (commentId) => deleteComment(commentId);
+
+  const onCompareClick = () => {
+    navigate({
+      pathname: generatePath(routes.PROCESSORS_COMPARE),
+      search: `?leftId=${id}`,
+    });
+  };
+
+  const onEditClick = () => {
+    navigate(generatePath(routes.PROCESSORS_EDIT, { id }));
+  };
 
   useEffect(() => {
     const socket = createSocket(id);
@@ -53,6 +66,10 @@ const ProcessorDetails = () => {
   return (
     <Stack spacing={3} alignItems="center">
       <ProcessorDetailsDisplay processor={processor} isFetched={isFetched} />
+      <Button onClick={onCompareClick}>Compare with other processors</Button>
+      {userInfo?.role === 'ROLE_ADMIN' && (
+        <Button onClick={onEditClick}>Edit processor</Button>
+      )}
       <Divider sx={{ minWidth: '50%' }}>Add your comments</Divider>
       <AddComment processorId={id} />
       <Divider sx={{ minWidth: '50%' }}>Other comments</Divider>
